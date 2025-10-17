@@ -1,5 +1,6 @@
 import { Card } from "../components/ui/card";
 import { Shield, Award, Users, Truck } from "lucide-react";
+import storePhoto from "../assets/store-photo.jpg";
 
 export default function About() {
   const features = [
@@ -45,7 +46,7 @@ export default function About() {
             <div>
               <h2 className="text-4xl font-bold mb-6">Nasza misja</h2>
               <p className="text-lg text-muted-foreground mb-4">
-                Sklep BHP powstał z myślą o bezpieczeństwie pracowników w każdej
+                Sklep BHP Perfect powstał z myślą o bezpieczeństwie pracowników w każdej
                 branży. Od ponad 15 lat dostarczamy najwyższej jakości odzież
                 roboczą, obuwie BHP i środki ochrony osobistej.
               </p>
@@ -59,8 +60,12 @@ export default function About() {
                 wszystkie normy bezpieczeństwa Unii Europejskiej.
               </p>
             </div>
-            <div className="bg-gray-200 rounded-lg h-96 flex items-center justify-center">
-              <p className="text-muted-foreground">Zdjęcie magazynu / zespołu</p>
+            <div className="rounded-lg overflow-hidden shadow-xl border-2 border-primary/20">
+              <img 
+                src={storePhoto} 
+                alt="Sklep BHP Perfect - magazyn z asortymentem" 
+                className="w-full h-96 object-cover"
+              />
             </div>
           </div>
 
@@ -84,7 +89,7 @@ export default function About() {
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h2 className="text-4xl font-bold mb-6">Nasza lokalizacja</h2>
           <p className="text-xl text-muted-foreground mb-8">
-            Sklep BHP
+            Sklep BHP Perfect
             <br />
             Nowy Dwór Mazowiecki, Poland
           </p>

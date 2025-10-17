@@ -92,10 +92,10 @@ export default function Contact() {
 
           {/* Map */}
           <div className="mt-12">
-            <Card className="p-6">
-              <h2 className="text-2xl font-bold mb-6 text-center">Nasza Lokalizacja</h2>
+            <h2 className="text-3xl font-bold mb-8 text-center">Nasza Lokalizacja</h2>
+            <div className="w-full">
               <MapComponent />
-            </Card>
+            </div>
           </div>
         </div>
       </section>
