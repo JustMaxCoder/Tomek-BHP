@@ -23,5 +23,9 @@
     "javascriptreact": "javascriptreact",
     "typescriptreact": "typescriptreact"
   },
-  "css.lint.unknownAtRules": "ignore"
+  "css.lint.unknownAtRules": "ignore",
+  // Prettier extension settings - prefer local installation
+  "prettier.prettierPath": "./node_modules/prettier/index.cjs",
+  "prettier.resolveGlobalModules": false,
+  "prettier.requireConfig": false
 }
