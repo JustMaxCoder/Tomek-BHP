@@ -10,8 +10,7 @@ export function Header({ cartItemCount = 0 }: { cartItemCount?: number }) {
   const [categoriesOpen, setCategoriesOpen] = useState(false);
 
   const navItems = [
-    { href: "/", label: "Strona główna" },
-    { href: "/sklep", label: "Sklep", hasDropdown: true },
+    { href: "/", label: "Strona główna", hasDropdown: true },
     { href: "/o-nas", label: "O nas" },
     { href: "/kontakt", label: "Kontakt" },
   ];
@@ -77,6 +76,7 @@ export function Header({ cartItemCount = 0 }: { cartItemCount?: number }) {
                             href={`/sklep?category=${category.slug}`}
                             className="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-primary/20 hover:backdrop-blur-lg transition-all duration-200 group border border-transparent hover:border-primary/50"
                             data-testid={`dropdown-category-${category.slug}`}
+                            onClick={() => setCategoriesOpen(false)}
                           >
                             <span className="text-3xl group-hover:scale-110 transition-transform">{category.icon}</span>
                             <span className="text-white font-semibold group-hover:text-primary transition-colors">
