@@ -48,32 +48,32 @@ export default function Home({
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative bg-black text-white">
+      <section className="relative bg-black text-white min-h-[500px] sm:min-h-[600px]">
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-black/70 z-10" />
         <div className="absolute inset-0 bg-cover bg-center opacity-40" style={{ backgroundImage: `url(${bhpBackground})` }} />
 
-        <div className="relative z-20 max-w-7xl mx-auto px-4 py-20 md:py-32">
+        <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 py-16 sm:py-20 md:py-32">
           <div className="max-w-3xl">
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
               <span className="text-primary">Sklep BHP</span> Perfect
             </h1>
-            <p className="text-xl md:text-2xl text-gray-300 mb-8">
+            <p className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-6 sm:mb-8">
               Twoje bezpieczeństwo - nasza pasja! Szeroki wybór produktów BHP w najlepszych cenach.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/sklep" data-testid="button-shop-now">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <Link href="/sklep" data-testid="button-shop-now" className="w-full sm:w-auto">
                 <Button
                   size="lg"
-                  className="bg-primary text-primary-foreground font-semibold px-8 py-6 text-lg hover:bg-primary/90"
+                  className="w-full sm:w-auto bg-primary text-primary-foreground font-semibold px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg hover:bg-primary/90 touch-manipulation"
                 >
-                  Zobacz produkty <ArrowRight className="ml-2 h-5 w-5" />
+                  Zobacz produkty <ArrowRight className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
                 </Button>
               </Link>
-              <Link href="/kontakt" data-testid="button-contact">
+              <Link href="/kontakt" data-testid="button-contact" className="w-full sm:w-auto">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="backdrop-blur-sm bg-white/10 border-2 border-white text-white hover:bg-white hover:text-black px-8 py-6 text-lg font-semibold"
+                  className="w-full sm:w-auto backdrop-blur-sm bg-white/10 border-2 border-white text-white hover:bg-white hover:text-black px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg font-semibold touch-manipulation"
                 >
                   Skontaktuj się z nami
                 </Button>
@@ -84,30 +84,30 @@ export default function Home({
       </section>
 
       {/* Featured Products */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold">
+      <section className="py-12 sm:py-16 md:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 sm:mb-12 gap-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
               Polecane produkty
             </h2>
             <Link href="/sklep" data-testid="link-view-all">
-              <Button variant="outline" className="hidden md:flex">
+              <Button variant="outline" className="hidden md:flex touch-manipulation">
                 Zobacz wszystkie <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
           </div>
 
           {isLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
               {[...Array(8)].map((_, i) => (
                 <div
                   key={i}
-                  className="bg-gray-200 animate-pulse rounded-lg h-96"
+                  className="bg-gray-200 animate-pulse rounded-lg h-80 sm:h-96"
                 />
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
               {featuredProducts.map((product) => (
                 <ProductCard
                   key={product.id}
@@ -121,23 +121,23 @@ export default function Home({
       </section>
 
       {/* Trust Badges */}
-      <section className="py-16 md:py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
+      <section className="py-12 sm:py-16 md:py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12">
             Dlaczego my?
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
             {trustBadges.map((badge, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all border-2 border-gray-200 hover:border-primary"
+                className="flex flex-col items-center text-center bg-white p-5 sm:p-6 rounded-lg shadow-md hover:shadow-lg transition-all border-2 border-gray-200 hover:border-primary touch-manipulation"
                 data-testid={`trust-badge-${index}`}
               >
-                <div className="bg-primary rounded-full p-4 mb-4">
-                  <badge.icon className="h-8 w-8 text-black" />
+                <div className="bg-primary rounded-full p-3 sm:p-4 mb-3 sm:mb-4">
+                  <badge.icon className="h-7 w-7 sm:h-8 sm:w-8 text-black" />
                 </div>
-                <h3 className="font-semibold text-lg mb-2 text-black">{badge.title}</h3>
-                <p className="text-primary font-medium text-sm mb-3">
+                <h3 className="font-semibold text-base sm:text-lg mb-2 text-black">{badge.title}</h3>
+                <p className="text-primary font-medium text-sm mb-2 sm:mb-3">
                   {badge.description}
                 </p>
                 <p className="text-gray-600 text-sm leading-relaxed">
@@ -150,34 +150,34 @@ export default function Home({
       </section>
 
       {/* Location Section */}
-      <section className="py-16 md:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
+      <section className="py-12 sm:py-16 md:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12">
             Nasza lokalizacja
           </h2>
         </div>
-        <div className="w-full px-8">
+        <div className="w-full px-4 sm:px-8">
           <MapComponent />
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 md:py-20 bg-primary text-black">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+      <section className="py-12 sm:py-16 md:py-20 bg-primary text-black">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
             Potrzebujesz pomocy w wyborze?
           </h2>
-          <p className="text-xl mb-8">
+          <p className="text-lg sm:text-xl mb-6 sm:mb-8 px-4">
             Nasi specjaliści pomogą Ci dobrać odpowiednie środki ochrony
             osobistej.
           </p>
-          <Link href="/kontakt" data-testid="button-cta-contact">
+          <Link href="/kontakt" data-testid="button-cta-contact" className="inline-block w-full sm:w-auto">
             <Button
               size="lg"
               variant="outline"
-              className="bg-black text-white border-2 border-black hover:bg-white hover:text-black font-semibold px-8 py-6 text-lg"
+              className="w-full sm:w-auto bg-black text-white border-2 border-black hover:bg-white hover:text-black font-semibold px-6 sm:px-8 py-4 sm:py-6 text-base sm:text-lg touch-manipulation"
             >
-              Skontaktuj się z nami <ArrowRight className="ml-2 h-5 w-5" />
+              Skontaktuj się z nami <ArrowRight className="ml-2 h-4 sm:h-5 w-4 sm:w-5" />
             </Button>
           </Link>
         </div>

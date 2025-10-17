@@ -175,7 +175,7 @@ export function Header({ cartItemCount = 0 }: { cartItemCount?: number }) {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-white/10">
+          <nav className="md:hidden py-4 border-t border-white/10 max-h-[calc(100vh-4rem)] overflow-y-auto">
             {/* Mobile Categories */}
             <div className="mb-4">
               <div className="px-4 py-2 text-sm font-semibold text-primary">
@@ -185,14 +185,14 @@ export function Header({ cartItemCount = 0 }: { cartItemCount?: number }) {
                 <Link
                   key={category.slug}
                   href={`/sklep?category=${category.slug}`}
-                  className="flex items-center gap-3 px-4 py-3 text-white hover:bg-white/5 transition-colors rounded-md mx-2"
+                  className="flex items-center gap-3 px-4 py-4 text-white active:bg-white/10 transition-colors rounded-md mx-2 touch-manipulation"
                   onClick={() => setMobileMenuOpen(false)}
                   data-testid={`mobile-category-${category.slug}`}
                 >
-                  <div className="bg-primary rounded-md p-1.5">
-                    <category.icon className="h-4 w-4 text-black" />
+                  <div className="bg-primary rounded-md p-2">
+                    <category.icon className="h-5 w-5 text-black" />
                   </div>
-                  <div className="text-sm font-medium">{category.name}</div>
+                  <div className="text-base font-medium">{category.name}</div>
                 </Link>
               ))}
             </div>
@@ -203,7 +203,7 @@ export function Header({ cartItemCount = 0 }: { cartItemCount?: number }) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`block px-4 py-3 rounded-md font-medium transition-colors hover-elevate ${
+                  className={`block px-4 py-4 rounded-md font-medium transition-colors touch-manipulation ${
                     isActive(item.href)
                       ? "text-primary bg-white/5"
                       : "text-white"
