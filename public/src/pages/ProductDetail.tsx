@@ -60,17 +60,7 @@ export default function ProductDetail({
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Product Image */}
-          <div className="bg-white rounded-lg shadow-md p-8">
-            <div className="relative aspect-square bg-gray-100 rounded-lg overflow-hidden mb-4">
-              <img
-                src={product.image}
-                alt={product.name}
-                className="w-full h-full object-cover"
-                data-testid="img-product-detail"
-              />
-            </div>
-          </div>
+          {/* Product Image - Removed */}
 
           {/* Product Info */}
           <div className="bg-white rounded-lg shadow-md p-8">

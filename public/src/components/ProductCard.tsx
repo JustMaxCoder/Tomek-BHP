@@ -18,20 +18,14 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
       className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg group"
       data-testid={`card-product-${product.id}`}
     >
-      <Link href={`/produkt/${product.id}`} className="block relative overflow-hidden bg-gray-100 aspect-square">
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-          data-testid={`img-product-${product.id}`}
-        />
+      <div className="p-4 bg-gray-100">
         <Badge
-          className="absolute top-2 right-2 bg-black/80 text-white text-xs"
+          className="bg-black/80 text-white text-xs"
           data-testid={`badge-category-${product.id}`}
         >
           {product.category}
         </Badge>
-      </Link>
+      </div>
 
       <div className="p-4">
         <Link href={`/produkt/${product.id}`}>
