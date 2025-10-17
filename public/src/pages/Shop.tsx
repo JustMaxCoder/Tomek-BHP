@@ -53,7 +53,7 @@ export default function Shop({
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white border-b">
+      <div className="bg-gray-50 border-b">
         <div className="max-w-7xl mx-auto px-4 py-8">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Sklep BHP</h1>
           <p className="text-muted-foreground text-lg">

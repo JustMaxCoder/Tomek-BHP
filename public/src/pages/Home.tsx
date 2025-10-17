@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "../components/ui/button";
 import { ProductCard } from "../components/ProductCard";
+import { MapComponent } from "../components/MapComponent";
 import { ArrowRight, Shield, Truck, Award, HeadphonesIcon } from "lucide-react";
 import type { Product } from "../../../shared/schema";
 
@@ -129,7 +130,7 @@ export default function Home({
       </section>
 
       {/* Featured Products */}
-      <section className="py-16 md:py-20">
+      <section className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-center justify-between mb-12">
             <h2 className="text-4xl md:text-5xl font-bold">
@@ -184,6 +185,18 @@ export default function Home({
                 </p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Location Section */}
+      <section className="py-16 md:py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
+            Nasza lokalizacja
+          </h2>
+          <div className="max-w-4xl mx-auto">
+            <MapComponent />
           </div>
         </div>
       </section>
