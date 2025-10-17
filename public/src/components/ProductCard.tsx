@@ -18,14 +18,17 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
       className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg group"
       data-testid={`card-product-${product.id}`}
     >
-      <div className="p-4 bg-gray-100">
-        <Badge
-          className="bg-black/80 text-white text-xs"
-          data-testid={`badge-category-${product.id}`}
-        >
-          {product.category}
-        </Badge>
-      </div>
+      <Link href={`/produkt/${product.id}`} className="block">
+        <div className="relative bg-gray-100 aspect-square flex items-center justify-center border-b border-gray-200">
+          <div className="text-gray-300 text-6xl">📦</div>
+          <Badge
+            className="absolute top-2 right-2 bg-black/80 text-white text-xs"
+            data-testid={`badge-category-${product.id}`}
+          >
+            {product.category}
+          </Badge>
+        </div>
+      </Link>
 
       <div className="p-4">
         <Link href={`/produkt/${product.id}`}>
