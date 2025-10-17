@@ -5,6 +5,7 @@ import { ProductCard } from "../components/ProductCard";
 import { MapComponent } from "../components/MapComponent";
 import { ArrowRight, Shield, Truck, Award, HeadphonesIcon } from "lucide-react";
 import type { Product } from "../../../shared/schema";
+import bhpBackground from "../assets/bhp-background.png";
 
 export default function Home({
   onAddToCart,
@@ -72,7 +73,7 @@ export default function Home({
       {/* Hero Section */}
       <section className="relative bg-black text-white">
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-black/70 z-10" />
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920')] bg-cover bg-center opacity-30" />
+        <div className="absolute inset-0 bg-cover bg-center opacity-40" style={{ backgroundImage: `url(${bhpBackground})` }} />
 
         <div className="relative z-20 max-w-7xl mx-auto px-4 py-20 md:py-32">
           <div className="max-w-3xl">
