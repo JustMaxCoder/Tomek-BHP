@@ -15,14 +15,14 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
 
   return (
     <div
-      className="group bg-card rounded-lg overflow-hidden transition-all duration-300 border-2 border-border hover:border-primary hover:shadow-xl hover:-translate-y-1"
+      className="group bg-white rounded-md overflow-hidden transition-all duration-200 border border-gray-200 hover:shadow-lg"
       data-testid={`card-product-${product.id}`}
     >
       <Link href={`/produkt/${product.id}`} className="block">
-        <div className="relative bg-gray-100 dark:bg-gray-800 aspect-square flex items-center justify-center">
-          <div className="text-gray-300 text-4xl sm:text-6xl">📦</div>
+        <div className="relative bg-white aspect-[4/3] flex items-center justify-center p-4">
+          <div className="text-gray-300 text-5xl sm:text-7xl">📦</div>
           <Badge
-            className="absolute top-1.5 right-1.5 sm:top-2 sm:right-2 bg-black/80 text-white text-[10px] sm:text-xs px-1.5 py-0.5 sm:px-2 sm:py-1"
+            className="absolute top-2 left-2 bg-primary text-black text-[10px] px-2 py-0.5 font-semibold"
             data-testid={`badge-category-${product.id}`}
           >
             {product.category}
@@ -30,47 +30,43 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
         </div>
       </Link>
 
-      <div className="p-3 sm:p-4">
+      <div className="p-3 border-t border-gray-100">
         <Link href={`/produkt/${product.id}`}>
           <h3
-            className="font-semibold text-sm sm:text-lg mb-1.5 sm:mb-2 line-clamp-2 hover:text-primary transition-colors"
+            className="font-normal text-sm leading-tight mb-2 line-clamp-2 hover:text-primary transition-colors min-h-[2.5rem]"
             data-testid={`text-product-name-${product.id}`}
           >
             {product.name}
           </h3>
         </Link>
 
-        <p className="text-xs sm:text-sm text-muted-foreground line-clamp-2 mb-2 sm:mb-3" data-testid={`text-product-description-${product.id}`}>
-          {product.description}
-        </p>
-
-        <div className="flex items-center justify-between mb-2 sm:mb-3">
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            <div
-              className={`h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full ${
-                inStock ? "bg-green-600" : "bg-red-600"
-              }`}
-            />
-            <span className="text-xs sm:text-sm" data-testid={`text-stock-${product.id}`}>
-              {inStock ? "W magazynie" : "Brak"}
-            </span>
-          </div>
+        <div className="flex items-center gap-1.5 mb-2">
+          <div
+            className={`h-1.5 w-1.5 rounded-full ${
+              inStock ? "bg-green-500" : "bg-red-500"
+            }`}
+          />
+          <span className="text-[11px] text-gray-600" data-testid={`text-stock-${product.id}`}>
+            {inStock ? "Dostępny" : "Niedostępny"}
+          </span>
         </div>
 
-        <div className="flex items-center justify-between gap-2">
-          <span className="text-lg sm:text-2xl font-bold" data-testid={`text-price-${product.id}`}>
-            {price.toFixed(2)} zł
-          </span>
+        <div className="flex items-end justify-between gap-2 mt-3">
+          <div className="flex flex-col">
+            <span className="text-xl sm:text-2xl font-bold text-gray-900" data-testid={`text-price-${product.id}`}>
+              {price.toFixed(2)} zł
+            </span>
+          </div>
           <Button
             variant="default"
             size="sm"
-            className="bg-primary text-primary-foreground hover:bg-primary/90 text-xs sm:text-sm px-2 sm:px-4 h-8 sm:h-10"
+            className="bg-primary text-black hover:bg-primary/90 font-semibold text-xs px-3 h-8 rounded-md"
             onClick={() => onAddToCart?.(product)}
             disabled={!inStock}
             data-testid={`button-add-to-cart-${product.id}`}
           >
-            <ShoppingCart className="h-3 w-3 sm:h-4 sm:w-4 sm:mr-2" />
-            <span className="hidden sm:inline">Dodaj</span>
+            <ShoppingCart className="h-3.5 w-3.5 sm:mr-1.5" />
+            <span className="hidden sm:inline">Kup</span>
           </Button>
         </div>
       </div>
