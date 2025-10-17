@@ -45,21 +45,25 @@ export default function Home({
       icon: Truck,
       title: "Szybka dostawa",
       description: "Wysyłka w 24h",
+      text: "Zamów dziś, otrzymaj jutro! Gwarantujemy błyskawiczną realizację zamówień."
     },
     {
       icon: Shield,
       title: "Certyfikowane produkty",
       description: "Zgodne z normami UE",
+      text: "Wszystkie produkty posiadają certyfikaty jakości i spełniają normy bezpieczeństwa."
     },
     {
       icon: Award,
       title: "Najwyższa jakość",
       description: "Sprawdzeni producenci",
+      text: "Współpracujemy tylko z renomowanymi producentami znanych marek BHP."
     },
     {
       icon: HeadphonesIcon,
       title: "Wsparcie klienta",
       description: "Pomoc 24/7",
+      text: "Nasz zespół doradców zawsze służy pomocą w doborze odpowiednich produktów."
     },
   ];
 
@@ -172,15 +176,18 @@ export default function Home({
             {trustBadges.map((badge, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all border border-gray-200"
+                className="flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all border-2 border-gray-200 hover:border-primary"
                 data-testid={`trust-badge-${index}`}
               >
                 <div className="bg-primary rounded-full p-4 mb-4">
                   <badge.icon className="h-8 w-8 text-black" />
                 </div>
                 <h3 className="font-semibold text-lg mb-2 text-black">{badge.title}</h3>
-                <p className="text-gray-600 text-sm">
+                <p className="text-primary font-medium text-sm mb-3">
                   {badge.description}
+                </p>
+                <p className="text-gray-600 text-sm leading-relaxed">
+                  {badge.text}
                 </p>
               </div>
             ))}
@@ -195,7 +202,9 @@ export default function Home({
             Nasza lokalizacja
           </h2>
           <div className="max-w-4xl mx-auto">
-            <MapComponent />
+            <div className="bg-white p-6 rounded-lg shadow-lg border-2 border-gray-200">
+              <MapComponent />
+            </div>
           </div>
         </div>
       </section>

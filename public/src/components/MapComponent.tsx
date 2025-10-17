@@ -10,12 +10,12 @@ export function MapComponent() {
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
         title="Mapa sklepu - Sklep BHP Pogotowie BHP"
-        className="rounded-md"
+        className="rounded-lg border-2 border-gray-300"
       />
-      <div className="mt-4 text-center">
-        <p className="font-semibold text-lg">Sklep BHP Pogotowie BHP</p>
-        <p className="text-muted-foreground">Bohaterów Modlina 17</p>
-        <p className="text-muted-foreground">05-100 Nowy Dwór Mazowiecki</p>
+      <div className="mt-6 text-center bg-gray-50 p-4 rounded-lg border border-gray-200">
+        <p className="font-bold text-xl mb-2 text-black">Sklep BHP Pogotowie BHP</p>
+        <p className="text-gray-700 font-medium">Bohaterów Modlina 17</p>
+        <p className="text-gray-700 font-medium">05-100 Nowy Dwór Mazowiecki</p>
       </div>
     </div>
   );

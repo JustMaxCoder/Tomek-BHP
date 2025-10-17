@@ -25,7 +25,7 @@ export function Header({ cartItemCount = 0 }: { cartItemCount?: number }) {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 hover-elevate active-elevate-2 px-2 py-1 rounded-md transition-colors" data-testid="link-home">
+          <Link href="/" className="flex items-center gap-2" data-testid="link-home">
             <div className="text-2xl font-bold">
               Sklep <span className="text-primary">BHP</span>
             </div>
