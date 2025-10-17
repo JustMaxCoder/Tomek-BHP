@@ -18,29 +18,6 @@ export default function Home({
 
   const featuredProducts = products?.slice(0, 8) || [];
 
-  const categories = [
-    {
-      name: "Odzież robocza",
-      slug: "odziez-robocza",
-      description: "Profesjonalne ubrania robocze",
-    },
-    {
-      name: "Obuwie BHP",
-      slug: "obuwie",
-      description: "Bezpieczne buty robocze",
-    },
-    {
-      name: "Rękawice",
-      slug: "rekawice",
-      description: "Rękawice ochronne",
-    },
-    {
-      name: "Ochrona głowy",
-      slug: "ochrona-glowy",
-      description: "Kaski i ochraniacze",
-    },
-  ];
-
   const trustBadges = [
     {
       icon: Truck,
@@ -102,33 +79,6 @@ export default function Home({
                 </Button>
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Categories Grid */}
-      <section className="py-16 md:py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-black">
-            Kategorie produktów
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {categories.map((category) => (
-              <Link
-                key={category.slug}
-                href={`/sklep?category=${category.slug}`}
-                className="bg-white rounded-lg p-6 shadow-md hover:shadow-xl transition-all hover-elevate active-elevate-2 border-2 border-gray-200 hover:border-primary group"
-                data-testid={`card-category-${category.slug}`}
-              >
-                <h3 className="text-xl font-semibold mb-2 text-black group-hover:text-primary transition-colors">{category.name}</h3>
-                <p className="text-gray-600 text-sm mb-4">
-                  {category.description}
-                </p>
-                <div className="text-primary font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
-                  Przeglądaj <ArrowRight className="h-4 w-4" />
-                </div>
-              </Link>
-            ))}
           </div>
         </div>
       </section>
