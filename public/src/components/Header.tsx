@@ -52,17 +52,18 @@ export function Header({ cartItemCount = 0 }: { cartItemCount?: number }) {
     return location.startsWith(href);
   };
 
-  
+
 
   return (
     <header className="sticky top-0 z-50 bg-black text-white shadow-lg">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
+      <div className="max-w-7xl mx-auto">
+        <div className="flex items-center justify-between px-3 sm:px-4 md:px-6 py-2.5 sm:py-3 md:py-4">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2" data-testid="link-home">
-            <div className="text-2xl font-bold">
-              Sklep <span className="text-primary">BHP</span>
-            </div>
+          <Link href="/" className="flex items-center gap-1.5 sm:gap-2 md:gap-3" data-testid="link-home">
+            <Shield className="h-6 w-6 sm:h-7 sm:w-7 md:h-8 md:w-8 text-primary" />
+            <span className="text-base sm:text-lg md:text-xl lg:text-2xl font-bold">
+              Sklep BHP <span className="text-primary">Perfect</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -79,7 +80,7 @@ export function Header({ cartItemCount = 0 }: { cartItemCount?: number }) {
                   <ChevronDown className="ml-1 h-4 w-4" />
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent 
+              <DropdownMenuContent
                 className="w-72 bg-black/95 backdrop-blur-lg border-2 border-primary/20"
                 align="start"
               >

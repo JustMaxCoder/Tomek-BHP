@@ -59,37 +59,37 @@ export default function ProductDetail({
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 md:gap-12">
           {/* Product Image Placeholder */}
-          <div className="bg-white rounded-lg shadow-md p-4 sm:p-8">
+          <div className="bg-white rounded-lg shadow-md p-3 sm:p-4 md:p-8">
             <div className="relative aspect-square bg-gray-100 rounded-lg flex items-center justify-center border border-gray-200">
-              <div className="text-gray-300 text-6xl sm:text-9xl">📦</div>
+              <div className="text-gray-300 text-5xl sm:text-6xl md:text-9xl">📦</div>
             </div>
           </div>
 
           {/* Product Info */}
-          <div className="bg-white rounded-lg shadow-md p-4 sm:p-8">
-            <Badge className="mb-3 sm:mb-4 text-xs sm:text-sm" data-testid="badge-category">
+          <div className="bg-white rounded-lg shadow-md p-3 sm:p-4 md:p-8">
+            <Badge className="mb-2 sm:mb-3 md:mb-4 text-[10px] sm:text-xs md:text-sm" data-testid="badge-category">
               {product.category}
             </Badge>
             
-            <h1 className="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4" data-testid="text-product-name">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-2 sm:mb-3 md:mb-4" data-testid="text-product-name">
               {product.name}
             </h1>
 
-            <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+            <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 mb-3 sm:mb-4 md:mb-6">
               <div
-                className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full ${
+                className={`h-2 w-2 sm:h-2.5 sm:w-2.5 md:h-3 md:w-3 rounded-full ${
                   inStock ? "bg-green-600" : "bg-red-600"
                 }`}
               />
-              <span className="text-sm sm:text-lg font-medium" data-testid="text-stock-status">
+              <span className="text-xs sm:text-sm md:text-base lg:text-lg font-medium" data-testid="text-stock-status">
                 {inStock ? `W magazynie (${product.stock} szt.)` : "Brak w magazynie"}
               </span>
             </div>
 
-            <div className="mb-6 sm:mb-8">
-              <span className="text-3xl sm:text-5xl font-bold" data-testid="text-product-price">
+            <div className="mb-4 sm:mb-6 md:mb-8">
+              <span className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold" data-testid="text-product-price">
                 {price.toFixed(2)} zł
               </span>
             </div>
@@ -133,12 +133,12 @@ export default function ProductDetail({
             {/* Add to Cart Button */}
             <Button
               size="lg"
-              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold py-6 text-lg mb-4"
+              className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold py-3 sm:py-4 md:py-6 text-sm sm:text-base md:text-lg mb-3 sm:mb-4"
               disabled={!inStock}
               onClick={() => onAddToCart(product, quantity)}
               data-testid="button-add-to-cart"
             >
-              <ShoppingCart className="mr-2 h-5 w-5" />
+              <ShoppingCart className="mr-2 h-4 w-4 sm:h-5 sm:w-5" />
               Dodaj do koszyka
             </Button>
 
@@ -146,7 +146,7 @@ export default function ProductDetail({
               <Button
                 variant="outline"
                 size="lg"
-                className="w-full py-6 text-lg font-semibold"
+                className="w-full py-3 sm:py-4 md:py-6 text-sm sm:text-base md:text-lg font-semibold"
                 data-testid="button-go-to-cart"
               >
                 Przejdź do koszyka
