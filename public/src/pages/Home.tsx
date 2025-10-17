@@ -201,11 +201,9 @@ export default function Home({
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
             Nasza lokalizacja
           </h2>
-          <div className="max-w-4xl mx-auto">
-            <div className="bg-white p-6 rounded-lg shadow-lg border-2 border-gray-200">
-              <MapComponent />
-            </div>
-          </div>
+        </div>
+        <div className="w-full px-8">
+          <MapComponent />
         </div>
       </section>
 
