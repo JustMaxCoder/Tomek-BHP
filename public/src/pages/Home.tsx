@@ -105,7 +105,7 @@ export default function Home({
       {/* Categories Grid */}
       <section className="py-16 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-black">
             Kategorie produktów
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -113,14 +113,14 @@ export default function Home({
               <Link
                 key={category.slug}
                 href={`/sklep?category=${category.slug}`}
-                className="bg-white rounded-lg p-6 shadow-md hover:shadow-lg transition-all hover-elevate active-elevate-2 border border-transparent hover:border-primary/20"
+                className="bg-white rounded-lg p-6 shadow-md hover:shadow-xl transition-all hover-elevate active-elevate-2 border-2 border-gray-200 hover:border-primary group"
                 data-testid={`card-category-${category.slug}`}
               >
-                <h3 className="text-xl font-semibold mb-2">{category.name}</h3>
-                <p className="text-muted-foreground text-sm mb-4">
+                <h3 className="text-xl font-semibold mb-2 text-black group-hover:text-primary transition-colors">{category.name}</h3>
+                <p className="text-gray-600 text-sm mb-4">
                   {category.description}
                 </p>
-                <div className="text-primary font-medium flex items-center gap-2">
+                <div className="text-primary font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
                   Przeglądaj <ArrowRight className="h-4 w-4" />
                 </div>
               </Link>
@@ -173,14 +173,14 @@ export default function Home({
             {trustBadges.map((badge, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center text-center"
+                className="flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all border border-gray-200"
                 data-testid={`trust-badge-${index}`}
               >
                 <div className="bg-primary rounded-full p-4 mb-4">
                   <badge.icon className="h-8 w-8 text-black" />
                 </div>
-                <h3 className="font-semibold text-lg mb-2">{badge.title}</h3>
-                <p className="text-muted-foreground text-sm">
+                <h3 className="font-semibold text-lg mb-2 text-black">{badge.title}</h3>
+                <p className="text-gray-600 text-sm">
                   {badge.description}
                 </p>
               </div>

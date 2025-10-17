@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { ShoppingCart, Menu, X } from "lucide-react";
+import { ShoppingCart, Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { useState } from "react";
@@ -7,12 +7,21 @@ import { useState } from "react";
 export function Header({ cartItemCount = 0 }: { cartItemCount?: number }) {
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [categoriesOpen, setCategoriesOpen] = useState(false);
 
   const navItems = [
     { href: "/", label: "Strona główna" },
-    { href: "/sklep", label: "Sklep" },
+    { href: "/sklep", label: "Sklep", hasDropdown: true },
     { href: "/o-nas", label: "O nas" },
     { href: "/kontakt", label: "Kontakt" },
+  ];
+
+  const categories = [
+    { name: "Odzież robocza", slug: "odziez-robocza", icon: "👔" },
+    { name: "Obuwie BHP", slug: "obuwie", icon: "👞" },
+    { name: "Rękawice", slug: "rekawice", icon: "🧤" },
+    { name: "Ochrona głowy", slug: "ochrona-glowy", icon: "⛑️" },
+    { name: "Ochrona słuchu", slug: "ochrona-sluchu", icon: "🎧" },
   ];
 
   const isActive = (href: string) => {
@@ -34,21 +43,74 @@ export function Header({ cartItemCount = 0 }: { cartItemCount?: number }) {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1">
             {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`px-4 py-2 rounded-md font-medium transition-colors hover-elevate active-elevate-2 ${
-                  isActive(item.href)
-                    ? "text-primary"
-                    : "text-white"
-                }`}
-                data-testid={`link-nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
-              >
-                {item.label}
-                {isActive(item.href) && (
-                  <div className="h-0.5 bg-primary mt-1 rounded-full" />
-                )}
-              </Link>
+              item.hasDropdown ? (
+                <div
+                  key={item.href}
+                  className="relative"
+                  onMouseEnter={() => setCategoriesOpen(true)}
+                  onMouseLeave={() => setCategoriesOpen(false)}
+                >
+                  <Link
+                    href={item.href}
+                    className={`px-4 py-2 rounded-md font-medium transition-colors hover-elevate active-elevate-2 flex items-center gap-1 ${
+                      isActive(item.href) ? "text-primary" : "text-white"
+                    }`}
+                    data-testid={`link-nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
+                  >
+                    {item.label}
+                    <ChevronDown className={`h-4 w-4 transition-transform ${categoriesOpen ? 'rotate-180' : ''}`} />
+                    {isActive(item.href) && (
+                      <div className="h-0.5 bg-primary mt-1 rounded-full absolute bottom-0 left-4 right-4" />
+                    )}
+                  </Link>
+                  
+                  {/* Dropdown Menu */}
+                  {categoriesOpen && (
+                    <div className="absolute top-full left-0 mt-2 w-72 bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                      <div className="bg-primary p-3">
+                        <h3 className="font-semibold text-black text-sm">Kategorie produktów</h3>
+                      </div>
+                      <div className="p-2">
+                        {categories.map((category) => (
+                          <Link
+                            key={category.slug}
+                            href={`/sklep?category=${category.slug}`}
+                            className="flex items-center gap-3 px-4 py-3 rounded-md hover:bg-gray-100 transition-colors group"
+                            data-testid={`dropdown-category-${category.slug}`}
+                          >
+                            <span className="text-2xl">{category.icon}</span>
+                            <span className="text-black font-medium group-hover:text-primary transition-colors">
+                              {category.name}
+                            </span>
+                          </Link>
+                        ))}
+                        <div className="border-t border-gray-200 mt-2 pt-2">
+                          <Link
+                            href="/sklep"
+                            className="flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-black text-white hover:bg-primary hover:text-black font-medium transition-colors"
+                          >
+                            Zobacz wszystkie produkty
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`px-4 py-2 rounded-md font-medium transition-colors hover-elevate active-elevate-2 ${
+                    isActive(item.href) ? "text-primary" : "text-white"
+                  }`}
+                  data-testid={`link-nav-${item.label.toLowerCase().replace(/\s+/g, '-')}`}
+                >
+                  {item.label}
+                  {isActive(item.href) && (
+                    <div className="h-0.5 bg-primary mt-1 rounded-full" />
+                  )}
+                </Link>
+              )
             ))}
           </nav>
 
