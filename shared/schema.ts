@@ -17,8 +17,11 @@ export const products = pgTable("products", {
   description: text("description").notNull(),
   price: numeric("price", { precision: 10, scale: 2 }).notNull(),
   image: text("image").notNull(),
+  images: text("images").array().default(sql`ARRAY[]::text[]`),
   category: text("category").notNull(),
   stock: integer("stock").notNull().default(0),
+  available: boolean("available").notNull().default(true),
+  shipping: text("shipping").notNull().default("standard"),
 });
 
 export const orders = pgTable("orders", {
@@ -34,6 +37,19 @@ export const orders = pgTable("orders", {
   createdAt: text("created_at").notNull(),
 });
 
+export const gallery = pgTable("gallery", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  filename: text("filename").notNull(),
+  path: text("path").notNull(),
+  uploadedAt: text("uploaded_at").notNull(),
+});
+
+export const settings = pgTable("settings", {
+  id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
+  key: text("key").notNull().unique(),
+  value: text("value").notNull(),
+});
+
 // Insert schemas
 export const insertUserSchema = createInsertSchema(users).omit({
   id: true,
@@ -46,6 +62,15 @@ export const insertProductSchema = createInsertSchema(products).omit({
 export const insertOrderSchema = createInsertSchema(orders).omit({
   id: true,
   createdAt: true,
+});
+
+export const insertGallerySchema = createInsertSchema(gallery).omit({
+  id: true,
+  uploadedAt: true,
+});
+
+export const insertSettingsSchema = createInsertSchema(settings).omit({
+  id: true,
 });
 
 // Auth schemas
@@ -76,6 +101,10 @@ export type InsertProduct = z.infer<typeof insertProductSchema>;
 export type Product = typeof products.$inferSelect;
 export type InsertOrder = z.infer<typeof insertOrderSchema>;
 export type Order = typeof orders.$inferSelect;
+export type InsertGallery = z.infer<typeof insertGallerySchema>;
+export type Gallery = typeof gallery.$inferSelect;
+export type InsertSettings = z.infer<typeof insertSettingsSchema>;
+export type Settings = typeof settings.$inferSelect;
 export type LoginData = z.infer<typeof loginSchema>;
 export type RegisterData = z.infer<typeof registerSchema>;
 export type CartItem = z.infer<typeof cartItemSchema>;

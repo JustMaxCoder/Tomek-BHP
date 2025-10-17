@@ -5,6 +5,7 @@ import { Toaster } from "./components/ui/toaster";
 import { TooltipProvider } from "./components/ui/tooltip";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
+import { PromoBanner } from "./components/PromoBanner";
 import { useToast } from "./hooks/use-toast";
 import { useState, useEffect } from "react";
 import type { Product, CartItem } from "../../shared/schema";
@@ -16,8 +17,10 @@ import ProductDetail from "./pages/ProductDetail";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import AdminLogin from "./pages/AdminLogin";
+import AdminPanel from "./pages/AdminPanel";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
+import Gallery from "./pages/Gallery";
 import NotFound from "./pages/not-found";
 
 function Router() {
@@ -81,6 +84,7 @@ function Router() {
 
   return (
     <div className="flex flex-col min-h-screen">
+      <PromoBanner />
       <Header cartItemCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)} />
       <main className="flex-1">
         <Switch>
@@ -106,9 +110,11 @@ function Router() {
               <Checkout cartItems={cartItems} onClearCart={handleClearCart} />
             )}
           />
-          <Route path="/admin" component={AdminLogin} />
+          <Route path="/admin/login" component={AdminLogin} />
+          <Route path="/admin" component={AdminPanel} />
           <Route path="/o-nas" component={About} />
           <Route path="/kontakt" component={Contact} />
+          <Route path="/galeria" component={Gallery} />
           <Route component={NotFound} />
         </Switch>
       </main>

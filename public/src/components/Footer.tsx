@@ -18,7 +18,7 @@ export function Footer() {
             </p>
             <div className="flex items-center gap-2 text-sm text-gray-400 mb-2">
               <MapPin className="h-4 w-4 text-primary" />
-              <span>Nowy Dwór Mazowiecki, Poland</span>
+              <span>Bohaterów Modlina 17, 05-100 Nowy Dwór Mazowiecki</span>
             </div>
           </div>
 
@@ -92,9 +92,12 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-white/10 mt-12 pt-8 text-center">
+        <div className="border-t border-white/10 mt-12 pt-8 text-center space-y-2">
           <p className="text-gray-400 text-sm">
-            &copy; {currentYear} Sklep BHP. Wszelkie prawa zastrzeżone.
+            &copy; {currentYear} Sklep BHP Perfekt. Wszelkie prawa zastrzeżone.
+          </p>
+          <p className="text-gray-500 text-xs" data-testid="text-credits">
+            Created by: <span className="text-primary">Maksym Martynovych</span> — Owner: <span className="text-primary">Tomek Tomasz Burzykowski</span>
           </p>
         </div>
       </div>

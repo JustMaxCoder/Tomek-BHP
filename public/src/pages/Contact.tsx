@@ -1,5 +1,6 @@
 import { Card } from "../components/ui/card";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { MapComponent } from "../components/MapComponent";
 
 export default function Contact() {
   const contactInfo = [
@@ -18,7 +19,7 @@ export default function Contact() {
     {
       icon: MapPin,
       title: "Adres",
-      content: "Nowy Dwór Mazowiecki, Poland",
+      content: "Bohaterów Modlina 17, 05-100 Nowy Dwór Mazowiecki",
       link: null,
     },
     {
@@ -88,6 +89,14 @@ export default function Contact() {
               </div>
             </div>
           </Card>
+
+          {/* Map */}
+          <div className="mt-12">
+            <Card className="p-6">
+              <h2 className="text-2xl font-bold mb-6 text-center">Nasza Lokalizacja</h2>
+              <MapComponent />
+            </Card>
+          </div>
         </div>
       </section>
     </div>

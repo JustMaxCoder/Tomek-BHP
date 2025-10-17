@@ -36,7 +36,7 @@ export default function AdminLogin() {
         title: "Zalogowano pomyślnie",
         description: `Witaj, ${data.user.username}!`,
       });
-      setTimeout(() => setLocation("/"), 1500);
+      setTimeout(() => setLocation("/admin"), 1500);
     },
     onError: (error: any) => {
       toast({
@@ -58,7 +58,7 @@ export default function AdminLogin() {
         title: "Konto utworzone",
         description: "Zostałeś automatycznie zalogowany.",
       });
-      setTimeout(() => setLocation("/"), 1500);
+      setTimeout(() => setLocation("/admin"), 1500);
     },
     onError: (error: any) => {
       toast({

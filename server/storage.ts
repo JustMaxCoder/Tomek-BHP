@@ -5,6 +5,10 @@ import {
   type InsertProduct,
   type Order,
   type InsertOrder,
+  type Gallery,
+  type InsertGallery,
+  type Settings,
+  type InsertSettings,
 } from "../shared/schema";
 import { randomUUID } from "crypto";
 
@@ -19,22 +23,39 @@ export interface IStorage {
   getAllProducts(): Promise<Product[]>;
   getProduct(id: string): Promise<Product | undefined>;
   createProduct(product: InsertProduct): Promise<Product>;
+  updateProduct(id: string, product: Partial<InsertProduct>): Promise<Product | undefined>;
+  deleteProduct(id: string): Promise<void>;
 
   // Orders
   createOrder(order: InsertOrder): Promise<Order>;
   getAllOrders(): Promise<Order[]>;
+
+  // Gallery
+  getAllGalleryImages(): Promise<Gallery[]>;
+  createGalleryImage(image: InsertGallery): Promise<Gallery>;
+  deleteGalleryImage(id: string): Promise<void>;
+
+  // Settings
+  getSetting(key: string): Promise<Settings | undefined>;
+  setSetting(key: string, value: string): Promise<Settings>;
+  getAllSettings(): Promise<Settings[]>;
 }
 
 export class MemStorage implements IStorage {
   private users: Map<string, User>;
   private products: Map<string, Product>;
   private orders: Map<string, Order>;
+  private gallery: Map<string, Gallery>;
+  private settings: Map<string, Settings>;
 
   constructor() {
     this.users = new Map();
     this.products = new Map();
     this.orders = new Map();
+    this.gallery = new Map();
+    this.settings = new Map();
     this.seedData();
+    this.seedSettings();
   }
 
   private seedData() {
@@ -164,7 +185,14 @@ export class MemStorage implements IStorage {
 
     sampleProducts.forEach((product) => {
       const id = randomUUID();
-      this.products.set(id, { ...product, id, stock: product.stock ?? 0 });
+      this.products.set(id, { 
+        ...product, 
+        id, 
+        stock: product.stock ?? 0,
+        images: [],
+        available: true,
+        shipping: "standard"
+      });
     });
   }
 
@@ -211,6 +239,9 @@ export class MemStorage implements IStorage {
       ...insertProduct,
       id,
       stock: insertProduct.stock ?? 0,
+      images: insertProduct.images ?? [],
+      available: insertProduct.available ?? true,
+      shipping: insertProduct.shipping ?? "standard",
     };
     this.products.set(id, product);
     return product;
@@ -234,6 +265,85 @@ export class MemStorage implements IStorage {
 
   async getAllOrders(): Promise<Order[]> {
     return Array.from(this.orders.values());
+  }
+
+  // Product update/delete methods
+  async updateProduct(id: string, productUpdate: Partial<InsertProduct>): Promise<Product | undefined> {
+    const existing = this.products.get(id);
+    if (!existing) return undefined;
+    
+    const updated: Product = {
+      ...existing,
+      ...productUpdate,
+      images: productUpdate.images ?? existing.images,
+      available: productUpdate.available ?? existing.available,
+      shipping: productUpdate.shipping ?? existing.shipping,
+    };
+    this.products.set(id, updated);
+    return updated;
+  }
+
+  async deleteProduct(id: string): Promise<void> {
+    this.products.delete(id);
+  }
+
+  // Gallery methods
+  async getAllGalleryImages(): Promise<Gallery[]> {
+    return Array.from(this.gallery.values());
+  }
+
+  async createGalleryImage(insertGallery: InsertGallery): Promise<Gallery> {
+    const id = randomUUID();
+    const uploadedAt = new Date().toISOString();
+    const galleryImage: Gallery = {
+      ...insertGallery,
+      id,
+      uploadedAt,
+    };
+    this.gallery.set(id, galleryImage);
+    return galleryImage;
+  }
+
+  async deleteGalleryImage(id: string): Promise<void> {
+    this.gallery.delete(id);
+  }
+
+  // Settings methods
+  async getSetting(key: string): Promise<Settings | undefined> {
+    return Array.from(this.settings.values()).find(s => s.key === key);
+  }
+
+  async setSetting(key: string, value: string): Promise<Settings> {
+    const existing = await this.getSetting(key);
+    if (existing) {
+      existing.value = value;
+      this.settings.set(existing.id, existing);
+      return existing;
+    }
+    
+    const id = randomUUID();
+    const setting: Settings = { id, key, value };
+    this.settings.set(id, setting);
+    return setting;
+  }
+
+  async getAllSettings(): Promise<Settings[]> {
+    return Array.from(this.settings.values());
+  }
+
+  private seedSettings() {
+    // Seed default settings
+    const defaultSettings = [
+      { key: "siteName", value: "Sklep BHP Perfekt" },
+      { key: "bannerShow", value: "true" },
+      { key: "bannerText", value: "Promocja! -20% na całą odzież roboczą!" },
+      { key: "bannerLink", value: "/products" },
+    ];
+
+    defaultSettings.forEach(setting => {
+      const id = randomUUID();
+      this.settings.set(id, { id, ...setting });
+    });
   }
 }
 

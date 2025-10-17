@@ -12,6 +12,17 @@ export default {
         sm: ".1875rem" /* 3px */,
       },
       colors: {
+        // BHP Brand colors
+        brand: {
+          50: "hsl(48 100% 95%)",
+          100: "hsl(48 100% 85%)",
+          500: "hsl(48 100% 50%)", // #ffd000
+          700: "hsl(48 100% 39%)",
+        },
+        dark: {
+          900: "hsl(0 0% 4.3%)", // #0b0b0b
+          800: "hsl(0 0% 6.7%)", // #111111
+        },
         // Flat / base colors (regular buttons)
         background: "hsl(var(--background) / <alpha-value>)",
         foreground: "hsl(var(--foreground) / <alpha-value>)",
