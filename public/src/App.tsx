@@ -88,7 +88,7 @@ function Router() {
       <Header cartItemCount={cartItems.reduce((sum, item) => sum + item.quantity, 0)} />
       <main className="flex-1">
         <Switch>
-          <Route path="/" component={() => <Home onAddToCart={handleAddToCart} />} />
+          <Route path="/" component={Home} />
           <Route path="/sklep" component={() => <Shop onAddToCart={handleAddToCart} />} />
           <Route
             path="/produkt/:id"

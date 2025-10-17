@@ -1,22 +1,10 @@
 import { Link } from "wouter";
-import { useQuery } from "@tanstack/react-query";
 import { Button } from "../components/ui/button";
-import { ProductCard } from "../components/ProductCard";
 import { MapComponent } from "../components/MapComponent";
 import { ArrowRight, Shield, Truck, Award, HeadphonesIcon } from "lucide-react";
-import type { Product } from "../../../shared/schema";
 import bhpBackground from "../assets/bhp-background.png";
 
-export default function Home({
-  onAddToCart,
-}: {
-  onAddToCart: (product: Product) => void;
-}) {
-  const { data: products, isLoading } = useQuery<Product[]>({
-    queryKey: ["/api/products"],
-  });
-
-  const featuredProducts = products?.slice(0, 8) || [];
+export default function Home() {
 
   const trustBadges = [
     {
@@ -80,43 +68,6 @@ export default function Home({
               </Link>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Featured Products */}
-      <section className="py-8 sm:py-12 md:py-16 lg:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:px-6">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 sm:mb-8 md:mb-12 gap-3 sm:gap-4">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
-              Polecane produkty
-            </h2>
-            <Link href="/sklep" data-testid="link-view-all">
-              <Button variant="outline" className="hidden md:flex touch-manipulation">
-                Zobacz wszystkie <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </Link>
-          </div>
-
-          {isLoading ? (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
-              {[...Array(12)].map((_, i) => (
-                <div
-                  key={i}
-                  className="bg-gray-200 animate-pulse rounded-md h-72"
-                />
-              ))}
-            </div>
-          ) : (
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-3 sm:gap-4">
-              {featuredProducts.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  onAddToCart={onAddToCart}
-                />
-              ))}
-            </div>
-          )}
         </div>
       </section>
 
