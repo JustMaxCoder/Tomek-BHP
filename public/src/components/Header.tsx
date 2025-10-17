@@ -66,30 +66,30 @@ export function Header({ cartItemCount = 0 }: { cartItemCount?: number }) {
                   
                   {/* Dropdown Menu */}
                   {categoriesOpen && (
-                    <div className="absolute top-full left-0 mt-2 w-72 bg-white rounded-lg shadow-2xl border border-gray-200 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
-                      <div className="bg-primary p-3">
-                        <h3 className="font-semibold text-black text-sm">Kategorie produktów</h3>
+                    <div className="absolute top-full left-0 mt-2 w-80 backdrop-blur-md bg-black/90 rounded-xl shadow-2xl border border-primary/30 overflow-hidden z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+                      <div className="bg-gradient-to-r from-primary to-yellow-300 p-4">
+                        <h3 className="font-bold text-black text-base">🛡️ Kategorie produktów</h3>
                       </div>
-                      <div className="p-2">
+                      <div className="p-3">
                         {categories.map((category) => (
                           <Link
                             key={category.slug}
                             href={`/sklep?category=${category.slug}`}
-                            className="flex items-center gap-3 px-4 py-3 rounded-md hover:bg-gray-100 transition-colors group"
+                            className="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-primary/20 hover:backdrop-blur-lg transition-all duration-200 group border border-transparent hover:border-primary/50"
                             data-testid={`dropdown-category-${category.slug}`}
                           >
-                            <span className="text-2xl">{category.icon}</span>
-                            <span className="text-black font-medium group-hover:text-primary transition-colors">
+                            <span className="text-3xl group-hover:scale-110 transition-transform">{category.icon}</span>
+                            <span className="text-white font-semibold group-hover:text-primary transition-colors">
                               {category.name}
                             </span>
                           </Link>
                         ))}
-                        <div className="border-t border-gray-200 mt-2 pt-2">
+                        <div className="border-t border-primary/30 mt-3 pt-3">
                           <Link
                             href="/sklep"
-                            className="flex items-center justify-center gap-2 px-4 py-2 rounded-md bg-black text-white hover:bg-primary hover:text-black font-medium transition-colors"
+                            className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg bg-gradient-to-r from-primary to-yellow-300 text-black hover:from-yellow-300 hover:to-primary font-bold transition-all duration-200 shadow-lg hover:shadow-primary/50"
                           >
-                            Zobacz wszystkie produkty
+                            ⚡ Zobacz wszystkie produkty
                           </Link>
                         </div>
                       </div>

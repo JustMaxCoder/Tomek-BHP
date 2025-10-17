@@ -73,11 +73,10 @@ export default function Home({
         <div className="relative z-20 max-w-7xl mx-auto px-4 py-20 md:py-32">
           <div className="max-w-3xl">
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
-              Profesjonalna <span className="text-primary">odzież BHP</span>
+              <span className="text-primary">Sklep BHP</span> Perfect
             </h1>
             <p className="text-xl md:text-2xl text-gray-300 mb-8">
-              Kompleksowe wyposażenie dla bezpieczeństwa w pracy. Wysoka jakość,
-              konkurencyjne ceny.
+              Twoje bezpieczeństwo - nasza pasja! Szeroki wybór produktów BHP w najlepszych cenach.
             </p>
             <div className="flex flex-wrap gap-4">
               <Link href="/sklep" data-testid="button-shop-now">
