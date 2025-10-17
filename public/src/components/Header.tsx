@@ -3,12 +3,16 @@ import { ShoppingCart, Menu, X, ChevronDown, Package, Footprints, Hand, HardHat 
 import { Button } from "./ui/button";
 import { Badge } from "./ui/badge";
 import { useState, useRef, useEffect } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
 export function Header({ cartItemCount = 0 }: { cartItemCount?: number }) {
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [categoriesOpen, setCategoriesOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const navItems = [
     { href: "/", label: "Strona główna" },
@@ -48,16 +52,7 @@ export function Header({ cartItemCount = 0 }: { cartItemCount?: number }) {
     return location.startsWith(href);
   };
 
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setCategoriesOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
+  
 
   return (
     <header className="sticky top-0 z-50 bg-black text-white shadow-lg">
@@ -73,25 +68,26 @@ export function Header({ cartItemCount = 0 }: { cartItemCount?: number }) {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-1">
             {/* Categories Dropdown */}
-            <div className="relative" ref={dropdownRef}>
-              <Button
-                variant="ghost"
-                onClick={() => setCategoriesOpen(!categoriesOpen)}
-                className="px-4 py-2 text-white font-medium hover:text-primary transition-colors hover-elevate active-elevate-2"
-                data-testid="button-categories"
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="px-4 py-2 text-white font-medium hover:text-primary transition-colors"
+                  data-testid="button-categories"
+                >
+                  Kategorie
+                  <ChevronDown className="ml-1 h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent 
+                className="w-72 bg-black/95 backdrop-blur-lg border-2 border-primary/20"
+                align="start"
               >
-                Kategorie
-                <ChevronDown className={`ml-1 h-4 w-4 transition-transform ${categoriesOpen ? 'rotate-180' : ''}`} />
-              </Button>
-              
-              {categoriesOpen && (
-                <div className="absolute top-full left-0 mt-2 w-72 bg-black/95 backdrop-blur-lg border-2 border-primary/20 rounded-lg shadow-2xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
-                  {categories.map((category) => (
+                {categories.map((category) => (
+                  <DropdownMenuItem key={category.slug} asChild>
                     <Link
-                      key={category.slug}
                       href={`/sklep?category=${category.slug}`}
-                      className="flex items-start gap-3 p-3 cursor-pointer hover:bg-primary/10 transition-colors group border-b border-white/5 last:border-0"
-                      onClick={() => setCategoriesOpen(false)}
+                      className="flex items-start gap-3 p-3 cursor-pointer hover:bg-primary/10 transition-colors group"
                       data-testid={`dropdown-category-${category.slug}`}
                     >
                       <div className="bg-primary rounded-md p-2 group-hover:scale-110 transition-transform">
@@ -106,18 +102,19 @@ export function Header({ cartItemCount = 0 }: { cartItemCount?: number }) {
                         </div>
                       </div>
                     </Link>
-                  ))}
+                  </DropdownMenuItem>
+                ))}
+                <DropdownMenuItem asChild>
                   <Link
                     href="/sklep"
                     className="flex items-center justify-center p-3 mt-1 border-t border-primary/20 cursor-pointer hover:bg-primary/10 transition-colors font-semibold text-primary"
-                    onClick={() => setCategoriesOpen(false)}
                     data-testid="dropdown-all-products"
                   >
                     Zobacz wszystkie produkty →
                   </Link>
-                </div>
-              )}
-            </div>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
 
             {navItems.map((item) => (
               <Link

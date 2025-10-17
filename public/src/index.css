@@ -284,6 +284,7 @@
     
     button, a, input, select, textarea {
       touch-action: manipulation;
+      min-height: 44px; /* Apple's recommended touch target size */
     }
   }
 
@@ -298,6 +299,19 @@
     select,
     textarea {
       font-size: 16px;
+    }
+  }
+
+  /* Extra small screens optimization */
+  @media screen and (max-width: 375px) {
+    h1 {
+      font-size: 2rem;
+      line-height: 2.25rem;
+    }
+    
+    h2 {
+      font-size: 1.75rem;
+      line-height: 2rem;
     }
   }
 }
