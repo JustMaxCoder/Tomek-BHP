@@ -51,45 +51,45 @@ export default function ProductDetail({
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
         {/* Breadcrumbs */}
-        <div className="mb-8">
-          <Link href="/sklep" className="text-primary hover:underline flex items-center gap-2" data-testid="link-breadcrumb-shop">
-            <ArrowLeft className="h-4 w-4" /> Wróć do sklepu
+        <div className="mb-4 sm:mb-8">
+          <Link href="/sklep" className="text-primary hover:underline flex items-center gap-1.5 sm:gap-2 text-sm sm:text-base" data-testid="link-breadcrumb-shop">
+            <ArrowLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4" /> Wróć do sklepu
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12">
           {/* Product Image Placeholder */}
-          <div className="bg-white rounded-lg shadow-md p-8">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-8">
             <div className="relative aspect-square bg-gray-100 rounded-lg flex items-center justify-center border border-gray-200">
-              <div className="text-gray-300 text-9xl">📦</div>
+              <div className="text-gray-300 text-6xl sm:text-9xl">📦</div>
             </div>
           </div>
 
           {/* Product Info */}
-          <div className="bg-white rounded-lg shadow-md p-8">
-            <Badge className="mb-4" data-testid="badge-category">
+          <div className="bg-white rounded-lg shadow-md p-4 sm:p-8">
+            <Badge className="mb-3 sm:mb-4 text-xs sm:text-sm" data-testid="badge-category">
               {product.category}
             </Badge>
             
-            <h1 className="text-4xl font-bold mb-4" data-testid="text-product-name">
+            <h1 className="text-2xl sm:text-4xl font-bold mb-3 sm:mb-4" data-testid="text-product-name">
               {product.name}
             </h1>
 
-            <div className="flex items-center gap-3 mb-6">
+            <div className="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
               <div
-                className={`h-3 w-3 rounded-full ${
+                className={`h-2 w-2 sm:h-3 sm:w-3 rounded-full ${
                   inStock ? "bg-green-600" : "bg-red-600"
                 }`}
               />
-              <span className="text-lg font-medium" data-testid="text-stock-status">
+              <span className="text-sm sm:text-lg font-medium" data-testid="text-stock-status">
                 {inStock ? `W magazynie (${product.stock} szt.)` : "Brak w magazynie"}
               </span>
             </div>
 
-            <div className="mb-8">
-              <span className="text-5xl font-bold" data-testid="text-product-price">
+            <div className="mb-6 sm:mb-8">
+              <span className="text-3xl sm:text-5xl font-bold" data-testid="text-product-price">
                 {price.toFixed(2)} zł
               </span>
             </div>
@@ -156,36 +156,36 @@ export default function ProductDetail({
         </div>
 
         {/* Product Details Tabs */}
-        <div className="mt-12 bg-white rounded-lg shadow-md p-8">
+        <div className="mt-6 sm:mt-12 bg-white rounded-lg shadow-md p-4 sm:p-8">
           <Tabs defaultValue="description" className="w-full">
             <TabsList className="w-full justify-start border-b">
-              <TabsTrigger value="description" data-testid="tab-description">
+              <TabsTrigger value="description" data-testid="tab-description" className="text-sm sm:text-base">
                 Opis
               </TabsTrigger>
-              <TabsTrigger value="specifications" data-testid="tab-specifications">
+              <TabsTrigger value="specifications" data-testid="tab-specifications" className="text-sm sm:text-base">
                 Specyfikacja
               </TabsTrigger>
             </TabsList>
             
-            <TabsContent value="description" className="pt-6">
-              <p className="text-base leading-relaxed" data-testid="text-description">
+            <TabsContent value="description" className="pt-4 sm:pt-6">
+              <p className="text-sm sm:text-base leading-relaxed" data-testid="text-description">
                 {product.description}
               </p>
             </TabsContent>
             
-            <TabsContent value="specifications" className="pt-6">
-              <div className="space-y-3">
-                <div className="flex border-b pb-2">
-                  <span className="font-medium w-40">Kategoria:</span>
-                  <span>{product.category}</span>
+            <TabsContent value="specifications" className="pt-4 sm:pt-6">
+              <div className="space-y-2 sm:space-y-3">
+                <div className="flex flex-col sm:flex-row border-b pb-2 gap-1 sm:gap-0">
+                  <span className="font-medium text-sm sm:text-base sm:w-40">Kategoria:</span>
+                  <span className="text-sm sm:text-base">{product.category}</span>
                 </div>
-                <div className="flex border-b pb-2">
-                  <span className="font-medium w-40">Dostępność:</span>
-                  <span>{inStock ? "W magazynie" : "Brak"}</span>
+                <div className="flex flex-col sm:flex-row border-b pb-2 gap-1 sm:gap-0">
+                  <span className="font-medium text-sm sm:text-base sm:w-40">Dostępność:</span>
+                  <span className="text-sm sm:text-base">{inStock ? "W magazynie" : "Brak"}</span>
                 </div>
-                <div className="flex border-b pb-2">
-                  <span className="font-medium w-40">Stan magazynowy:</span>
-                  <span>{product.stock} szt.</span>
+                <div className="flex flex-col sm:flex-row border-b pb-2 gap-1 sm:gap-0">
+                  <span className="font-medium text-sm sm:text-base sm:w-40">Stan magazynowy:</span>
+                  <span className="text-sm sm:text-base">{product.stock} szt.</span>
                 </div>
               </div>
             </TabsContent>
