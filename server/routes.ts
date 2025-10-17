@@ -1,11 +1,17 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertProductSchema, insertOrderSchema, loginSchema, registerSchema } from "@shared/schema";
+import {
+  insertProductSchema,
+  insertOrderSchema,
+  loginSchema,
+  registerSchema,
+} from "../shared/schema";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-const JWT_SECRET = process.env.JWT_SECRET || "your-secret-key-change-in-production";
+const JWT_SECRET =
+  process.env.JWT_SECRET || "your-secret-key-change-in-production";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Product routes
@@ -13,7 +19,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const products = await storage.getAllProducts();
       res.json(products);
-    } catch (error) {
+    } catch {
       res.status(500).json({ error: "Failed to fetch products" });
     }
   });
@@ -25,7 +31,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ error: "Product not found" });
       }
       res.json(product);
-    } catch (error) {
+    } catch {
       res.status(500).json({ error: "Failed to fetch product" });
     }
   });
@@ -35,7 +41,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertProductSchema.parse(req.body);
       const product = await storage.createProduct(validatedData);
       res.status(201).json(product);
-    } catch (error) {
+    } catch {
       res.status(400).json({ error: "Invalid product data" });
     }
   });
@@ -49,7 +55,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         status: "pending",
       });
       res.status(201).json(order);
-    } catch (error) {
+    } catch {
       res.status(400).json({ error: "Invalid order data" });
     }
   });
@@ -58,7 +64,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const orders = await storage.getAllOrders();
       res.json(orders);
-    } catch (error) {
+    } catch {
       res.status(500).json({ error: "Failed to fetch orders" });
     }
   });
@@ -67,7 +73,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/auth/register", async (req, res) => {
     try {
       const validatedData = registerSchema.parse(req.body);
-      
+
       // Check if user already exists
       const existingUser = await storage.getUserByEmail(validatedData.email);
       if (existingUser) {
@@ -101,7 +107,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         },
         token,
       });
-    } catch (error) {
+    } catch {
       res.status(400).json({ error: "Invalid registration data" });
     }
   });
@@ -141,7 +147,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         },
         token,
       });
-    } catch (error) {
+    } catch {
       res.status(400).json({ error: "Invalid login data" });
     }
   });
