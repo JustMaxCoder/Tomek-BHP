@@ -70,30 +70,30 @@ export default function Home({
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 to-black/70 z-10" />
         <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=1920')] bg-cover bg-center opacity-30" />
 
-        <div className="relative z-20 max-w-7xl mx-auto px-4 py-24 md:py-40">
-          <div className="max-w-4xl">
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-black mb-8 leading-tight tracking-tight">
-              <span className="text-primary">BHP</span> Perfect
+        <div className="relative z-20 max-w-7xl mx-auto px-4 py-20 md:py-32">
+          <div className="max-w-3xl">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+              <span className="text-primary">Sklep BHP</span> Perfect
             </h1>
-            <p className="text-2xl md:text-3xl text-gray-200 mb-12 font-light">
-              Bezpieczeństwo w najlepszym wydaniu
+            <p className="text-xl md:text-2xl text-gray-300 mb-8">
+              Twoje bezpieczeństwo - nasza pasja! Szeroki wybór produktów BHP w najlepszych cenach.
             </p>
-            <div className="flex flex-wrap gap-6">
+            <div className="flex flex-wrap gap-4">
               <Link href="/sklep" data-testid="button-shop-now">
                 <Button
                   size="lg"
-                  className="bg-primary text-black font-bold px-12 py-7 text-xl hover:bg-yellow-300 transition-all shadow-2xl shadow-primary/30 rounded-xl"
+                  className="bg-primary text-primary-foreground font-semibold px-8 py-6 text-lg hover:bg-primary/90"
                 >
-                  Sklep <ArrowRight className="ml-2 h-6 w-6" />
+                  Zobacz produkty <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
               <Link href="/kontakt" data-testid="button-contact">
                 <Button
                   size="lg"
                   variant="outline"
-                  className="backdrop-blur-md bg-white/5 border-2 border-primary/50 text-white hover:bg-primary hover:text-black px-12 py-7 text-xl font-bold rounded-xl transition-all"
+                  className="backdrop-blur-sm bg-white/10 border-2 border-white text-white hover:bg-white hover:text-black px-8 py-6 text-lg font-semibold"
                 >
-                  Kontakt
+                  Skontaktuj się z nami
                 </Button>
               </Link>
             </div>
@@ -102,23 +102,25 @@ export default function Home({
       </section>
 
       {/* Categories Grid */}
-      <section className="py-20 md:py-24 bg-white">
+      <section className="py-16 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-5xl md:text-6xl font-black text-center mb-16 text-black">
-            Kategorie
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12 text-black">
+            Kategorie produktów
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {categories.map((category) => (
               <Link
                 key={category.slug}
                 href={`/sklep?category=${category.slug}`}
-                className="group relative bg-gradient-to-br from-black to-gray-900 rounded-2xl p-8 shadow-2xl hover:shadow-primary/20 transition-all duration-300 overflow-hidden border border-primary/20 hover:border-primary/60"
+                className="bg-white rounded-lg p-6 shadow-md hover:shadow-xl transition-all hover-elevate active-elevate-2 border-2 border-gray-200 hover:border-primary group"
                 data-testid={`card-category-${category.slug}`}
               >
-                <div className="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 transition-opacity duration-300" />
-                <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-primary transition-colors relative z-10">{category.name}</h3>
-                <div className="text-primary font-bold flex items-center gap-2 group-hover:gap-4 transition-all relative z-10">
-                  Zobacz <ArrowRight className="h-5 w-5" />
+                <h3 className="text-xl font-semibold mb-2 text-black group-hover:text-primary transition-colors">{category.name}</h3>
+                <p className="text-gray-600 text-sm mb-4">
+                  {category.description}
+                </p>
+                <div className="text-primary font-medium flex items-center gap-2 group-hover:gap-3 transition-all">
+                  Przeglądaj <ArrowRight className="h-4 w-4" />
                 </div>
               </Link>
             ))}
@@ -127,15 +129,15 @@ export default function Home({
       </section>
 
       {/* Featured Products */}
-      <section className="py-20 md:py-24 bg-gray-50">
+      <section className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-between mb-16">
-            <h2 className="text-5xl md:text-6xl font-black">
-              Produkty
+          <div className="flex items-center justify-between mb-12">
+            <h2 className="text-4xl md:text-5xl font-bold">
+              Polecane produkty
             </h2>
             <Link href="/sklep" data-testid="link-view-all">
-              <Button variant="outline" className="hidden md:flex border-2 border-black hover:bg-black hover:text-white font-bold px-6 py-3 rounded-xl">
-                Wszystkie <ArrowRight className="ml-2 h-5 w-5" />
+              <Button variant="outline" className="hidden md:flex">
+                Zobacz wszystkie <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
           </div>
@@ -164,19 +166,22 @@ export default function Home({
       </section>
 
       {/* Trust Badges */}
-      <section className="py-20 md:py-24 bg-gray-50">
+      <section className="py-16 md:py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {trustBadges.map((badge, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center text-center bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-all border-2 border-transparent hover:border-primary/30 group"
+                className="flex flex-col items-center text-center bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all border border-gray-200"
                 data-testid={`trust-badge-${index}`}
               >
-                <div className="bg-gradient-to-br from-primary to-yellow-300 rounded-2xl p-5 mb-6 group-hover:scale-110 transition-transform">
-                  <badge.icon className="h-10 w-10 text-black" />
+                <div className="bg-primary rounded-full p-4 mb-4">
+                  <badge.icon className="h-8 w-8 text-black" />
                 </div>
-                <h3 className="font-bold text-xl mb-1 text-black">{badge.title}</h3>
+                <h3 className="font-semibold text-lg mb-2 text-black">{badge.title}</h3>
+                <p className="text-gray-600 text-sm">
+                  {badge.description}
+                </p>
               </div>
             ))}
           </div>
@@ -184,10 +189,10 @@ export default function Home({
       </section>
 
       {/* Location Section */}
-      <section className="py-20 md:py-24 bg-white">
+      <section className="py-16 md:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <h2 className="text-5xl md:text-6xl font-black text-center mb-16">
-            Lokalizacja
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
+            Nasza lokalizacja
           </h2>
           <div className="max-w-4xl mx-auto">
             <MapComponent />
@@ -196,18 +201,22 @@ export default function Home({
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 md:py-32 bg-gradient-to-br from-black via-gray-900 to-black text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-primary/5" />
-        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-          <h2 className="text-5xl md:text-6xl font-black mb-8">
-            Potrzebujesz pomocy?
+      <section className="py-16 md:py-20 bg-primary text-black">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Potrzebujesz pomocy w wyborze?
           </h2>
+          <p className="text-xl mb-8">
+            Nasi specjaliści pomogą Ci dobrać odpowiednie środki ochrony
+            osobistej.
+          </p>
           <Link href="/kontakt" data-testid="button-cta-contact">
             <Button
               size="lg"
-              className="bg-primary text-black border-2 border-primary hover:bg-transparent hover:text-primary font-bold px-16 py-8 text-2xl rounded-xl transition-all shadow-2xl shadow-primary/30"
+              variant="outline"
+              className="bg-black text-white border-2 border-black hover:bg-white hover:text-black font-semibold px-8 py-6 text-lg"
             >
-              Kontakt <ArrowRight className="ml-3 h-7 w-7" />
+              Skontaktuj się z nami <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>
         </div>
